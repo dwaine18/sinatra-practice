@@ -1,0 +1,10 @@
+<h1>Edit <%=@student.name%>'s information</h1>
+
+<form action="/students/<%= @student.id %>" method="post">
+<input type="hidden" name="_method" value="patch">
+Update Name:<input type="text" name="students[name]" value="<%= @student.name %>">
+Update Age:<input type="integer" name="students[age]" value="<%= @student.age %>">
+Update SAT Score:<input type="integer" name="students[sat_score]" value="<%=  @student.sat_score%>">
+<input type="submit" name="" value="Submit Edit">
+
+

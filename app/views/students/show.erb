@@ -1,0 +1,23 @@
+<h1>Welcome to the show page</h1>
+
+
+
+
+<h2><%= @student.name%> has applied to the following programs</h2>
+<% @student.programs.each do |program|%>
+<li><%=program.program_name%></li>
+<%end%>
+
+
+<h2><%= @student.name%> has applied to the following universities</h2>
+<% @student.programs.each do |program|%>
+<li><%=program.school_name%></li>
+<%end%>
+
+
+<a href="/students/<%=@student.id%>/edit">Edit Student Information</a>
+
+<form action="/students/<%= @student.id %>" method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" name="" value="Delete this user">
+</form>

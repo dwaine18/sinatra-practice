@@ -1,0 +1,9 @@
+<h1>This is a list of all the students</h1>
+<h4>Click on the name of each student to see what school they applied to</h4>
+
+<% @students.each do |student|%>
+<h4><a href="/students/<%=student.id %>"><%=student.name%></a></h4>
+<%end%>
+
+
+<a href="/students/new">Create New Student</a>

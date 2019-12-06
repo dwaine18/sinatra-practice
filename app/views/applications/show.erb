@@ -1,0 +1,25 @@
+<h1>Application details Application number <%= @application.id %></h1>
+
+Student Name: <%= @application.student.name %></br>
+Program Name: <%= @application.program.program_name %></br>
+Sat Score: <%= @application.student.sat_score %></br>
+Current Application Status: <%= @application.app_status %></br>
+
+<h2>Admissions Decision</h2>
+
+<table>
+  <tr>
+    <td><form action="/applications/<%= @application.id %>" method="post">
+<input type="hidden" name="_method" value="patch">
+<input type="hidden" name="application[app_status]" value="accepted">
+<input type="submit" name="" value="Accept Applicant"></form></td>
+    <td><form action="/applications/<%= @application.id %>" method="post">
+<input type="hidden" name="_method" value="patch">
+<input type="hidden" name="application[app_status]" value="waitlisted">
+<input type="submit" name="" value="Waitlist Applicant"></form></td>
+    <td><form action="/applications/<%= @application.id %>" method="post">
+<input type="hidden" name="_method" value="patch">
+<input type="hidden" name="application[app_status]" value="rejecsssssted">
+<input type="submit" name="" value="Reject Applicant"></form></td>
+  </tr>
+</table>
