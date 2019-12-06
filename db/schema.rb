@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191206190849) do
+ActiveRecord::Schema.define(version: 20191206192319) do
 
   create_table "applications", force: :cascade do |t|
     t.integer  "student_id"
@@ -32,9 +32,10 @@ ActiveRecord::Schema.define(version: 20191206190849) do
     t.string   "name"
     t.integer  "age"
     t.integer  "sat_score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "email"
+    t.string   "password_digest"
   end
 
 end
