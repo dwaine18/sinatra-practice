@@ -1,6 +1,12 @@
-<h1>Welcome to the show page</h1>
+<h1>Welcome to My Student Account Dashboard</h1>
 
+<h3>My Account information</h3>
+<h3>Student:</h3><%= @student.name %></br>
+<h3>Student email:</h3><%= @student.email %></br>
+<h3>Student age:</h3><%= @student.age %></br>
+<h3>Student SAT Score:</h3><%= @student.sat_score %></br>
 
+<a href="/students/<%=@student.id%>/edit">Edit Student Information</a>
 
 
 <h2><%= @student.name%> has applied to the following programs</h2>
@@ -15,9 +21,9 @@
 <%end%>
 
 
-<a href="/students/<%=@student.id%>/edit">Edit Student Information</a>
+
 
 <form action="/students/<%= @student.id %>" method="post">
 <input type="hidden" name="_method" value="delete">
-<input type="submit" name="" value="Delete this user">
+<input type="submit" name="" value="Delete My Account">
 </form>
