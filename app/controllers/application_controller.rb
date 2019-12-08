@@ -8,6 +8,15 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, "admissions_advice_app"
   end
+  
+  helpers do
+    def logged_in?
+      !!current_user
+    end
+    def current_user
+      Student.find_by(id: session[:user_id])
+    end
+  end
 
   get "/" do
     erb :welcome

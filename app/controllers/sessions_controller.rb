@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     post '/login' do
      @student = Student.find_by(email: params[:email])
      if @student.authenticate(params[:password])
-        session[:student_id] = @student.id
+        session[:user_id] = @student.id
         redirect "/students/#{@student.id}"
      end
     end
