@@ -10,5 +10,15 @@ class SessionsController < ApplicationController
     get '/signup' do
         erb :signup
     end
+    
+    post '/students' do
 
+        if params[:name] != "" && params[:email] != "" && params[:password] != ""
+               @student = Student.create(params[:students])
+            redirect "/students/#{@student.id}"
+          else
+            erb :signup
+    end
 end
+end
+
