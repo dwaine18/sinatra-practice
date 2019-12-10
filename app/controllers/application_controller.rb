@@ -19,7 +19,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    if logged_in?
+        redirect "/students/#{current_user.id}"
+    else
     erb :welcome
+    end
   end
 
   get '/students' do
@@ -27,20 +31,18 @@ class ApplicationController < Sinatra::Base
     erb :'students/index'
   end
 
-  get '/students/new' do
-    erb :'students/new'
-    end
-    
-    post '/students' do
+  
+    # New student route in Sessions Controller
+    # post '/students' do
       
-    @student = Student.new(params[:student])
+    # @student = Student.new(params[:student])
     
-    if @student.save
-      redirect '/students'
-    else 
-      erb :'students/new'
-     end
-    end
+    # if @student.save
+    #   redirect '/students'
+    # else 
+    #   erb :'students/new'
+    #  end
+    # end
 
   get '/students/:id' do
   @student = Student.find(params[:id])
@@ -68,7 +70,20 @@ delete '/students/:id' do
   redirect '/students'
 
 end  
+# Applications Section
 
+get'/applications/new' do
+
+  @applications = Application.all
+
+  erb :'applications/new'
+
+end
+post '/applications' do
+
+  #your code here
+
+end
 get '/applications' do
 
   @applications = Application.all #define instance variable for view
@@ -104,6 +119,7 @@ get '/applications/:id' do
   erb :'applications/show' #show single application view
 
 end
+
 
 
 

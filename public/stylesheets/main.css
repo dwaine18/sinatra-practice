@@ -81,6 +81,14 @@
     margin-top: 20px;
     padding-top: 20px;
   }
+  .link {
+    background-color: #3B5367;
+    padding: 5px;
+    border-color: darkblue;
+    border-radius: 3px;
+    color: #ffffff;
+    
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -113,3 +121,4 @@
     line-height: 24px;
   }
 }
+
