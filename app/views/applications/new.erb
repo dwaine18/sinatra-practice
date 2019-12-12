@@ -1,5 +1,16 @@
 <h2>Select the Program you wish to Apply to</h3>
 
- 
 
- <%= collection_select(:user, :id, @users, :id, :name) %>
+
+
+<form action="/applications" method="post">
+<select name="application[program_name]">
+<%@programs.each do |program|%>
+ 
+  <option name="application[program_name]"value="<%=program.program_name%>"><%=program.program_name%></option>
+  <%end%>
+
+</select>
+<input type="submit" name="" value="Submit Application">
+
+

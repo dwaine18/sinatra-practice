@@ -16,14 +16,14 @@
 <h2><%= @student.name%> has applied to the following programs</h2>
    
 <% @student.programs.each do |program|%>
-<li><%=program.program_name%></li>
+<li><b>Program Name:</b> <%=program.program_name%>, <b>School Name:</b> <%=program.school_name%></li>
 <%end%>
 
-
-<h2><%= @student.name%> has applied to the following universities</h2>
-<% @student.programs.each do |program|%>
-<li><%=program.school_name%></li>
+<h2>Application Status</h2>
+<% @student.applications.each do |program|%>
+<li><b>Application number:</b> <%= program.program.id%> <b>Program Name:</b> <%=program.program.program_name%>, <b>School Name:</b> <%=program.program.school_name%><b>Application Status:</b> <%=program.app_status%></li>
 <%end%>
+
 
 </br>
 </br>

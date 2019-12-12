@@ -46,6 +46,11 @@ class ApplicationController < Sinatra::Base
 
   get '/students/:id' do
   @student = Student.find(params[:id])
+  #finding the applications submitted by the current user.
+  session[:user_id] = @student.id
+  
+  
+  
   erb :'students/show'
 end
 
@@ -75,14 +80,22 @@ end
 get'/applications/new' do
 
   @applications = Application.all
+  @programs = Program.all
 
   erb :'applications/new'
 
 end
 post '/applications' do
+  #get entire program object
+  @program = Program.find_by(program_name: params[:application][:program_name])
+  session[:user_id] = @student.id
 
-  #your code here
-
+  #create new application linking program with current user
+  @application = Application.create(student_id: current_user.id, program_id: @program.id)
+  
+  
+  redirect "/students/#{current_user.id}"
+  
 end
 get '/applications' do
 
