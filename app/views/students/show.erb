@@ -21,7 +21,7 @@
 
 <h2>Application Status</h2>
 <% @student.applications.each do |program|%>
-<li><b>Application number:</b> <%= program.program.id%> <b>Program Name:</b> <%=program.program.program_name%>, <b>School Name:</b> <%=program.program.school_name%><b>Application Status:</b> <%=program.app_status%></li>
+<li><b>Application number:</b> <%= program.id%> <b>Program Name:</b> <%=program.program.program_name%>, <b>School Name:</b> <%=program.program.school_name%><b>Application Status:</b> <%=program.app_status%></li>
 <%end%>
 
 

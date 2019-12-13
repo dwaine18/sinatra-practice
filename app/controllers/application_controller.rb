@@ -62,17 +62,20 @@ end
 
  patch "/students/:id" do
   @student = Student.find(params[:id])
-  
+  if @student.id == current_user.id 
   @student.update(params[:students])
 
   redirect "/students/#{@student.id}"
+  else 
+    redirect '/'
+  end
 end
 
 delete '/students/:id' do
   @student = Student.find(params[:id])
   
   @student.destroy
-  redirect '/students'
+  redirect '/'
 
 end  
 # Applications Section
@@ -88,7 +91,7 @@ end
 post '/applications' do
   #get entire program object
   @program = Program.find_by(program_name: params[:application][:program_name])
-  session[:user_id] = @student.id
+  # session[:user_id] = @student.id
 
   #create new application linking program with current user
   @application = Application.create(student_id: current_user.id, program_id: @program.id)
