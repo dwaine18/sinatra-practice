@@ -7,14 +7,14 @@ class SessionsController < ApplicationController
          if params[:email] !="email" && params[:password] !="password"
             # @student.authenticate(params[:password])
             if !@student.authenticate(params[:password])
-                redirect '/'
+                redirect "/"
             elsif 
                 @student.authenticate(params[:password])
                 session[:user_id] = @student.id
                 redirect "/students/#{@student.id}"
              end
          else
-            redirect '/'
+            redirect "/"
          end
         
      else 
@@ -52,5 +52,7 @@ class SessionsController < ApplicationController
            session.clear
            redirect '/'
        end
+
+    
 end
 

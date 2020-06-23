@@ -26,68 +26,24 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/students' do
-    @students = Student.all
-    erb :'students/index'
-  end
-
   
-    # New student route in Sessions Controller
-    # post '/students' do
-      
-    # @student = Student.new(params[:student])
-    
-    # if @student.save
-    #   redirect '/students'
-    # else 
-    #   erb :'students/new'
-    #  end
-    # end
-
-  get '/students/:id' do
-  @student = Student.find(params[:id])
-  #finding the applications submitted by the current user.
-  session[:user_id] = @student.id
-  
-  
-  
-  erb :'students/show'
-end
-
- get '/students/:id/edit' do
-
-  @student = Student.find(params[:id])
-  erb :'students/edit'
-end
-
- patch "/students/:id" do
-  @student = Student.find(params[:id])
-  if @student.id == current_user.id 
-  @student.update(params[:students])
-
-  redirect "/students/#{@student.id}"
-  else 
-    redirect '/'
-  end
-end
-
-delete '/students/:id' do
-  @student = Student.find(params[:id])
-  
-  @student.destroy
-  redirect '/'
-
-end  
-# Applications Section
-
+#  University  Applications Section
+#Check to see if user is logged in to create a new application.
 get'/applications/new' do
-
+  
+  if logged_in?
+    
   @applications = Application.all
   @programs = Program.all
 
   erb :'applications/new'
-
+    elsif !authorize?
+      erb :noaccess
+  else 
+    redirect "/"
+  end
 end
+
 post '/applications' do
   #get entire program object
   @program = Program.find_by(program_name: params[:application][:program_name])
@@ -100,6 +56,7 @@ post '/applications' do
   redirect "/students/#{current_user.id}"
   
 end
+#Show all applications
 get '/applications' do
 
   @applications = Application.all #define instance variable for view
@@ -137,6 +94,16 @@ get '/applications/:id' do
 end
 
 
-
-
+ helpers do
+      def logged_in?
+        !!current_user
+      end
+      def current_user
+        Student.find_by(id: session[:user_id])
+      end
+    
+    def authorize?(student)
+        @student == current_user.id
+    end
+  end
 end
